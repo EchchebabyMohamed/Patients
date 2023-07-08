@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.1.1/css/bootstrap.min.css">
+    <script src="webjars/bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+<div class="container" th:replace="header"></div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary"><center>Edit patient</center></div>
+        <div class="card-body">
+            <form method="post" th:action="@{save}">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nom</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nom</label>
+                    <input type="date" name="dateNaissance" class="form-control"  aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" name="malade" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1" >Malade</label>
+                </div>
+                <div class="nav nav-pills">
+                    <button type="submit" class="btn btn-primary" >Submit</button>
+                    <button type="reset" class="btn btn-danger">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function click(){
+        alert("hello ");
+    }
+</script>
+</body>
+</html>

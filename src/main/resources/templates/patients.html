@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.1.1/css/bootstrap.min.css">
+    <script src="webjars/bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+<div class="container" th:replace="header"></div>
+<div class="container mt-5">
+<div class="card">
+    <div class="card-header bg-primary"><center>Liste des patients</center></div>
+    <div class="card-body">
+        <form method="get" th:action="@{patients}">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="keyword" placeholder="Racherche">
+                <button class="btn btn-success">chercher</button>
+            </div>
+        </form>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>date naissance</th>
+                <th>malade</th>
+                <th></th>
+            </tr>
+            <tr th:each="p:${patients}">
+                <td th:text="${p.id}"/>
+                <td th:text="${p.name}"/>
+                <td th:text="${p.dateNaissance}"/>
+                <td th:text="${p.malade}"/>
+                <td class="d-flex">
+                    <a  onclick="return confirm('vous voulez supprimer ceci ?')" class="btn btn-danger me-2" th:href="@{deletePatient(id=${p.id})}">delete</a>
+                    <a class="btn btn-primary" th:href="@{editPatient(id=${p.id})}">Edit</a>
+                </td>
+            </tr>
+        </table>
+        <ul class="nav nav-pills">
+            <li th:each="page,status:${pages}">
+                <a  th:class="${status.index==currentPage?'btn btn-primary':'btn'}"
+                   th:href="@{patients(page=${status.index},keyword=${kw})}" th:text="${status.index}">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</body>
+</html>
